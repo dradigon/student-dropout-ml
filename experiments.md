@@ -76,3 +76,9 @@
 - Fixed by installing libgomp1 via apt-get
 - LightGBM model loads successfully in Docker
 
+## Experiment 14: Cloud Deployment (Render)
+- Deployed Dockerized FastAPI service to Render
+- Used Docker runtime with exposed port 8000
+- Verified service startup and health
+- Public endpoint tested successfully
+- Final inference system is live and accessible

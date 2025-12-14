@@ -1,33 +1,40 @@
 # 🎓 Student Dropout Prediction System
 
-An end-to-end Machine Learning project that predicts **student academic outcomes** (`Dropout`, `Enrolled`, `Graduate`) using institutional, demographic, and academic data.
+An end-to-end **Machine Learning system** that predicts **student academic outcomes** (`Dropout`, `Enrolled`, `Graduate`) using institutional, demographic, and academic data.
 
-The project covers the **complete ML lifecycle**:
+This project demonstrates a **production-grade ML workflow**, covering the full lifecycle from data preprocessing to cloud deployment.
 
-* Data preprocessing
-* Model training (LightGBM)
-* API development (FastAPI)
-* Docker containerization
-* Ready for cloud deployment
+---
+
+## 🛠️ Tech Stack
+
+* **Language**: Python
+* **Data Processing**: Pandas, NumPy
+* **Modeling**: LightGBM, Scikit-learn
+* **API**: FastAPI, Pydantic
+* **Containerization**: Docker
+* **Cloud Deployment**: Render
 
 ---
 
 ## 📌 Problem Statement
 
-Student dropout is a critical issue for educational institutions. This project aims to **predict student outcomes early**, enabling timely intervention to improve retention and academic success.
+Student dropout is a critical challenge for educational institutions. Early identification of at-risk students enables timely academic intervention.
+
+This system predicts **student academic outcomes** based on historical and institutional data to support data-driven decision making.
 
 ---
 
 ## 🧠 Machine Learning Details
 
 * **Task**: Multi-class classification
-* **Classes**:
+* **Target Classes**:
 
   * Dropout
   * Enrolled
   * Graduate
-* **Model**: LightGBM
-* **Encoding**: LabelEncoder
+* **Model**: LightGBM Classifier
+* **Target Encoding**: LabelEncoder
 * **Evaluation Metrics**:
 
   * Accuracy
@@ -49,7 +56,7 @@ student-dropout-ml/
 │   └── students.csv          # Dataset
 │
 ├── model/
-│   ├── lgbm_model.pkl        # Trained model
+│   ├── lgbm_model.pkl        # Trained LightGBM model
 │   └── label_encoder.pkl    # Label encoder
 │
 ├── notebooks/
@@ -57,23 +64,26 @@ student-dropout-ml/
 │
 ├── src/
 │   ├── preprocess.py        # Feature preprocessing
-│   └── train.py             # Model training script
+│   └── train.py             # Training pipeline
 │
-├── experiments.md            # Experiment tracking
+├── experiments.md            # Experiment tracking & decisions
 ├── Dockerfile                # Docker configuration
-├── requirements.txt          # Dependencies
+├── requirements.txt          # Production dependencies
 └── README.md                 # Project documentation
 ```
 
 ---
 
+## 🌐 Live Deployment
+
+The API is deployed and publicly accessible on Render:
+
+* **Base URL**: [https://student-dropout-ml.onrender.com](https://student-dropout-ml.onrender.com)
+* **Swagger UI**: [https://student-dropout-ml.onrender.com/docs](https://student-dropout-ml.onrender.com/docs)
+
+---
+
 ## 🚀 API Usage
-
-### Base URL
-
-```
-http://localhost:8000
-```
 
 ### Endpoint
 
@@ -138,6 +148,28 @@ POST /predict
 
 ---
 
+## ▶️ Run Locally (Without Docker)
+
+```bash
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Start API
+uvicorn api.main:app --reload
+```
+
+Open:
+
+```
+http://localhost:8000/docs
+```
+
+---
+
 ## 🐳 Docker Support
 
 ### Build Docker Image
@@ -162,11 +194,28 @@ http://localhost:8000/docs
 
 ## 🧪 Experiment Tracking
 
-All experiments, model decisions, and observations are documented in:
+All experiments, modeling decisions, failures, and production fixes are documented in:
 
 ```
 experiments.md
 ```
+
+---
+
+## ⚠️ Model Limitations
+
+* Lower predictive performance for the **Enrolled** class due to class overlap
+* Model trained on historical institutional data; generalization may vary across regions
+* Predictions are intended to **support** academic decision-making, not replace human judgment
+
+---
+
+## 📌 Future Improvements
+
+* Model monitoring and drift detection
+* CI/CD pipeline using GitHub Actions
+* Authentication and rate-limiting for API
+* Feature importance and explainability (SHAP)
 
 ---
 
@@ -178,18 +227,4 @@ IIITDM Kancheepuram
 
 ---
 
-## ⭐ Highlights
-
-* End-to-end ML pipeline
-* Production-ready API
-* Dockerized deployment
-* Industry-aligned project structure
-
----
-
-## 📌 Future Improvements
-
-* Cloud deployment (Render / AWS)
-* Model monitoring & drift detection
-* CI/CD pipeline
-* Authentication for API
+⭐ *This project demonstrates an industry-aligned, end-to-end ML deployment workflow.*
